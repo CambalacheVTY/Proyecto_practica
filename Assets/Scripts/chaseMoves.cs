@@ -16,10 +16,21 @@ public class goToTarget : MonoBehaviour
 
     void FixedUpdate()
     {
-        
-        
-            Vector2 direction = (target.position - transform.position).normalized;
-            rb.AddForce(direction * speed);
-        
+
+
+        Vector2 direction = (target.position - transform.position).normalized;
+        rb.AddForce(direction * speed);
+
+       
+
+
+    }
+
+    void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            Destroy(gameObject);
+        }
     }
 }

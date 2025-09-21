@@ -18,7 +18,7 @@ public class GameStartManager : MonoBehaviour
        
 
 
-        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+        
     }
 
     void Update()
@@ -33,4 +33,5 @@ public class GameStartManager : MonoBehaviour
             Time.timeScale = 1f;
         }
     }
+
 }
