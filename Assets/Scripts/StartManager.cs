@@ -1,5 +1,4 @@
 using UnityEngine;
-using UnityEngine.SceneManagement;
 
 public class GameStartManager : MonoBehaviour
 {
@@ -9,16 +8,10 @@ public class GameStartManager : MonoBehaviour
 
     void Start()
     {
-        
-        gameStartPanel.SetActive(true); 
-      
+        if (gameStartPanel != null)
+            gameStartPanel.SetActive(true);
 
-        Time.timeScale = 0f;
-
-       
-
-
-        
+        Time.timeScale = 0f; // Pausar al inicio
     }
 
     void Update()
@@ -27,11 +20,9 @@ public class GameStartManager : MonoBehaviour
         {
             gameStarted = true;
             if (gameStartPanel != null)
-            {
                 gameStartPanel.SetActive(false);
-            }
-            Time.timeScale = 1f;
+
+            Time.timeScale = 1f; // Reanudar juego
         }
     }
-
 }
