@@ -3537,8 +3537,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gameOverUI: {fileID: 429714318}
-  gameStartUI: {fileID: 47665169}
-  isGameOver: 0
 --- !u!4 &1511590565
 Transform:
   m_ObjectHideFlags: 0
@@ -4791,6 +4789,10 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 5376804867686253744, guid: 4a319be6c3cd8fe4e858c2927880582b, type: 3}
+      propertyPath: inputActions
+      value: 
+      objectReference: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
     - target: {fileID: 5376804867686253744, guid: 4a319be6c3cd8fe4e858c2927880582b, type: 3}
       propertyPath: mainCollider
       value: 

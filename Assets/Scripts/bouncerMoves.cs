@@ -25,12 +25,12 @@ public class bouncerMoves : MonoBehaviour
 
     void OnCollisionEnter2D(Collision2D collision)
     {
-        // Rebote normal
+       
         Vector2 normal = collision.contacts[0].normal;
         moveDirection = Vector2.Reflect(moveDirection, normal).normalized;
         rb.velocity = moveDirection * speed;
 
-        // Game Over check
+       
         if (collision.collider.CompareTag("Player"))
         {
             BasicMove player = collision.collider.GetComponent<BasicMove>();
