@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.InputSystem;
 
 public class BasicMove : MonoBehaviour
 {
@@ -24,6 +25,44 @@ public class BasicMove : MonoBehaviour
     private float parryCooldown = 2f;
     private float cooldownTimer = 0f;
 
+    public InputActionAsset inputActions;
+
+    private InputAction moveAction;
+    private InputAction parryAction;
+
+    private Vector2 moveInput = Vector2.zero;
+
+    void Awake()
+    {
+        var playerMap = inputActions.FindActionMap("Player", true);
+
+        moveAction = playerMap.FindAction("Move", true);
+        parryAction = playerMap.FindAction("Parry", true);
+
+        moveAction.performed += ctx => moveInput = ctx.ReadValue<Vector2>();
+        moveAction.canceled += ctx => moveInput = Vector2.zero;
+
+        parryAction.performed += ctx =>
+        {
+            if (!isParrying && !isOnCooldown)
+            {
+                ActivateParry();
+            }
+        };
+    }
+
+    void OnEnable()
+    {
+        moveAction?.Enable();
+        parryAction?.Enable();
+    }
+
+    void OnDisable()
+    {
+        moveAction?.Disable();
+        parryAction?.Disable();
+    }
+
     void Start()
     {
         Application.targetFrameRate = 60;
@@ -42,25 +81,14 @@ public class BasicMove : MonoBehaviour
 
     void FixedUpdate()
     {
-        float horizontal = Input.GetAxis("Horizontal");
-        float vertical = Input.GetAxis("Vertical");
-
-        Vector2 direction = new Vector2(horizontal, vertical).normalized;
-
         if (rb.velocity.magnitude < maxSpeed)
         {
-            rb.AddForce(direction * forceAmount);
+            rb.AddForce(moveInput.normalized * forceAmount);
         }
     }
 
     void Update()
     {
-        
-        if (Input.GetKeyDown(KeyCode.Space) && !isParrying && !isOnCooldown)
-        {
-            ActivateParry();
-        }
-
         if (isParrying)
         {
             parryTimer -= Time.deltaTime;
@@ -106,10 +134,9 @@ public class BasicMove : MonoBehaviour
             parryRenderer.color = Color.clear;
     }
 
-
     public void CollectCoin()
     {
         coinCount++;
-        Debug.Log("Monedas recogidas: " + coinCount);
+        
     }
 }

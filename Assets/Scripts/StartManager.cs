@@ -11,7 +11,7 @@ public class GameStartManager : MonoBehaviour
         if (gameStartPanel != null)
             gameStartPanel.SetActive(true);
 
-        Time.timeScale = 0f; // Pausar al inicio
+        Time.timeScale = 0f;
     }
 
     void Update()
@@ -22,7 +22,7 @@ public class GameStartManager : MonoBehaviour
             if (gameStartPanel != null)
                 gameStartPanel.SetActive(false);
 
-            Time.timeScale = 1f; // Reanudar juego
+            Time.timeScale = 1f; 
         }
     }
 }

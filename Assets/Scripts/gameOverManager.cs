@@ -13,8 +13,7 @@ public class GameOverManager : MonoBehaviour
         if (instance == null)
         {
             instance = this;
-            // No uses DontDestroyOnLoad si quieres que se resetee todo al recargar la escena
-            // DontDestroyOnLoad(gameObject);
+            
         }
         else
         {
@@ -27,7 +26,7 @@ public class GameOverManager : MonoBehaviour
         if (gameOverUI != null)
             gameOverUI.SetActive(false);
 
-        // Suscribirse al evento para resetear el UI cada vez que cargues escena
+        
         SceneManager.sceneLoaded += OnSceneLoaded;
     }
 
